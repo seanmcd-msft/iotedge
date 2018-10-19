@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft. All rights reserved.
+// Copyright (c) Microsoft. All rights reserved.
 
 using Xunit;
 
-[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = true)]
+[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly)]
