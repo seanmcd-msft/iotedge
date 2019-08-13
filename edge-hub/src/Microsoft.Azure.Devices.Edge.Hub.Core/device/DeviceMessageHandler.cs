@@ -326,9 +326,9 @@ namespace Microsoft.Azure.Devices.Edge.Hub.Core.Device
                 Log.LogDebug((int)EventIds.MethodSentToClient, Invariant($"Sent method invoke call from device/module {identity.Id} for {id} with correlation ID {correlationId}"));
             }
 
-            public static void SendingMessage(IIdentity identity, string lockToken)
+            public static void SendingMessage(IIdentity identity, string lockToken, string msg, string input)
             {
-                Log.LogDebug((int)EventIds.MessageSentToClient, Invariant($"Sent message with correlation ID {lockToken} to {identity.Id}"));
+                Log.LogDebug((int)EventIds.MessageSentToClient, Invariant($"Sent message with correlation ID {lockToken} to {identity.Id} input {input} msg {msg}"));
             }
 
             public static void ErrorGettingTwin(IIdentity identity, Exception ex)
@@ -420,7 +420,7 @@ namespace Microsoft.Azure.Devices.Edge.Hub.Core.Device
                     if (completedTask != taskCompletionSource.Task)
                     {
                         Events.MessageFeedbackTimedout(this.Identity, lockToken);
-                        taskCompletionSource.SetException(new TimeoutException("Message completion response not received"));
+                        taskCompletionSource.SetException(new TimeoutException($"Completion response not received for msg to {this.Identity.Id} correlation {lockToken} msg {System.Text.Encoding.UTF8.GetString(message.Body)}"));
                         this.messageTaskCompletionSources.TryRemove(lockToken, out taskCompletionSource);
                     }
 
@@ -446,7 +446,7 @@ namespace Microsoft.Azure.Devices.Edge.Hub.Core.Device
             if (completedTask != taskCompletion.Task)
             {
                 Events.MethodResponseTimedout(this.Identity, request.Id, request.CorrelationId);
-                taskCompletion.TrySetResult(new DirectMethodResponse(new EdgeHubTimeoutException($"Timed out waiting for device to respond to method request {request.CorrelationId}"), HttpStatusCode.GatewayTimeout));
+                taskCompletion.TrySetResult(new DirectMethodResponse(new EdgeHubTimeoutException($"Timed out waiting for device to respond to method request {request.CorrelationId} with data {System.Text.Encoding.UTF8.GetString(request.Data)}"), HttpStatusCode.GatewayTimeout));
                 this.methodCallTaskCompletionSources.TryRemove(request.CorrelationId.ToLowerInvariant(), out taskCompletion);
             }
 
