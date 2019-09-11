@@ -316,7 +316,7 @@ function Initialize-IoTEdge {
 
     if ((Test-MobyNeedsToBeMoved) -or (Test-LegacyInstaller)) {
         Write-HostRed
-        Write-HostRed ('IoT Edge is installed in an invalid location. ' + $ReinstallMessage)
+        Write-HostRed ('IoT Edge or the IoT Edge Moby Engine is installed in an invalid location. Probably there is an old preview install present and it needs to be uninstalled or the system should be re-imaged.' + $ReinstallMessage)
         throw
     }
 
@@ -933,7 +933,7 @@ function Install-Packages(
 
         if ((Test-MobyNeedsToBeMoved) -or (Test-LegacyInstaller)) {
             Write-HostRed
-            Write-HostRed ('IoT Edge is installed in an invalid location. ' + $ReinstallMessage)
+            Write-HostRed ('IoT Edge or the IoT Edge Moby Engine is installed in an invalid location. Probably there is an old preview install present and it needs to be uninstalled or the system should be re-imaged.' + $ReinstallMessage)
             throw
         }
 
@@ -947,7 +947,7 @@ function Install-Packages(
         if (Test-EdgeAlreadyInstalled) {
             if ((Test-MobyNeedsToBeMoved) -or (Test-LegacyInstaller)) {
                 Write-HostRed
-                Write-HostRed ('IoT Edge is installed in an invalid location. ' + $ReinstallMessage)
+                Write-HostRed ('IoT Edge or the IoT Edge Moby Engine is installed in an invalid location. Probably there is an old preview install present and it needs to be uninstalled or the system should be re-imaged.' + $ReinstallMessage)
             }
             else {
                 Write-HostRed
@@ -960,8 +960,7 @@ function Install-Packages(
         if (Test-MobyAlreadyInstalled) {
             if ((Test-MobyNeedsToBeMoved) -or (Test-LegacyInstaller)) {
                 Write-HostRed
-                Write-HostRed ('IoT Edge Moby Engine is installed in an invalid location. ' +
-                    $ReinstallMessage)
+                Write-HostRed ('IoT Edge or the IoT Edge Moby Engine is installed in an invalid location. Probably there is an old preview install present and it needs to be uninstalled or the system should be re-imaged.' + $ReinstallMessage)
             }
             else {
                 Write-HostRed
