@@ -1666,6 +1666,7 @@ function Uninstall-Services([ref] $RestartNeeded, [bool] $LegacyInstaller) {
         }
     }
     else {
+        Write-Verbose "uninstalling iot edge package"
         Uninstall-Package -Name $EdgePackage -RestartNeeded $RestartNeeded
     }
 }
