@@ -60,7 +60,7 @@ jobs:
     variables:
       os: windows
       arch: amd64
-      artifactDir: iotedged-windows
+      artifactDir: iotedged-windows-amd64
 
     steps:
     - template: templates/e2e-setup.yaml

@@ -263,7 +263,7 @@ jobs:
         - agent-os-name -equals WinPro_x64
         - run-stress -equals true
     variables:
-      edgelet.artifact.name: 'iotedged-windows'
+      edgelet.artifact.name: 'iotedged-windows-amd64'
     steps:
       - checkout: none
       - task: AzureKeyVault@1
@@ -338,7 +338,7 @@ jobs:
         - agent-os-name -equals WinServerCore_x64
         - run-stress -equals true
     variables:
-      edgelet.artifact.name: 'iotedged-windows'
+      edgelet.artifact.name: 'iotedged-windows-amd64'
     steps:
       - checkout: none
       - task: AzureKeyVault@1
@@ -411,7 +411,7 @@ jobs:
         - run-stress -equals true
         - runner-os-name -equals WinIoTCore_x64
     variables:
-      edgelet.artifact.name: 'iotedged-windows'
+      edgelet.artifact.name: 'iotedged-windows-amd64'
     steps:
       - checkout: none
       - task: AzureKeyVault@1

@@ -189,10 +189,10 @@ jobs:
           OpusInfo: 'https://azure.microsoft.com/en-us/services/iot-edge/'
           SessionTimeout: 20
       - task: PublishBuildArtifacts@1
-        displayName: 'Publish Artifact: iotedged-windows'
+        displayName: 'Publish Artifact: iotedged-windows-amd64'
         inputs:
           PathtoPublish: '$(build.artifactstagingdirectory)'
-          ArtifactName: 'iotedged-windows'
+          ArtifactName: 'iotedged-windows-amd64'
 
 ################################################################################
   - job: windows_arm32
@@ -245,7 +245,7 @@ jobs:
           OpusInfo: 'https://azure.microsoft.com/en-us/services/iot-edge/'
           SessionTimeout: 20
       - task: PublishBuildArtifacts@1
-        displayName: 'Publish Artifact: iotedged-windows'
+        displayName: 'Publish Artifact: iotedged-windows-arm32'
         inputs:
           PathtoPublish: '$(build.artifactstagingdirectory)'
           ArtifactName: 'iotedged-windows-arm32v7'
