@@ -85,3 +85,26 @@ jobs:
       displayName: Prefer IPv4
 
     - template: templates/e2e-run.yaml
+
+################################################################################	
+  - job: windows_iotcorevm_amd64
+################################################################################	
+    displayName: Windows iotcore VM amd64
+
+    pool:
+      name: $(pool.name)
+      demands: IoTCoreVMProvider
+      
+    variables:
+      os: windows
+      arch: amd64
+      artifactDir: iotedged-windows
+
+    steps:
+      displayname: Create Runner VM
+      target: host
+
+     - script: @echo script echo test 
+     - pwsh:
+      write-output 'output test'
+      write-information 'info test' -informationaction continue
